@@ -60,3 +60,19 @@ export interface DashboardStats {
   bankBalance: number;
   activeDonors: number;
 }
+
+export interface Department {
+  _id: string;
+  id: string;
+  name: string;
+  code?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  managerName?: string;
+  managerPhone?: string;
+  description?: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}

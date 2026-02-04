@@ -25,6 +25,11 @@ const expenseSchema = new mongoose.Schema({
     ref: 'Bank',
     required: [true, 'ادائیگی کا ذریعہ ضروری ہے'],
   },
+  departmentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Department',
+    default: null,
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -42,6 +47,7 @@ expenseSchema.index({ paymentSource: 1 });
 expenseSchema.index({ date: -1 });
 expenseSchema.index({ category: 1 });
 expenseSchema.index({ isDeleted: 1 });
+expenseSchema.index({ departmentId: 1 });
 
 expenseSchema.pre(/^find/, function() {
   if (!this.getOptions().includeDeleted) {

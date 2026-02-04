@@ -391,3 +391,93 @@ export const expensesApi = {
     return apiClient.delete(`/finance/expenses/${id}`);
   },
 };
+
+// Department API endpoints
+export interface Department {
+  _id: string;
+  id: string;
+  name: string;
+  code?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  managerName?: string;
+  managerPhone?: string;
+  description?: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface DepartmentListResponse {
+  departments: Department[];
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    itemsPerPage: number;
+  };
+}
+
+export interface DepartmentStats {
+  donationsCount: number;
+  donationsTotal: number;
+  expensesCount: number;
+  expensesTotal: number;
+  donorsCount: number;
+  netAmount: number;
+}
+
+export const departmentsApi = {
+  getAll: async (search = '', page = 1, limit = 10, isActive?: boolean) => {
+    const params = new URLSearchParams({
+      search,
+      page: page.toString(),
+      limit: limit.toString(),
+    });
+    if (isActive !== undefined) {
+      params.set('isActive', isActive.toString());
+    }
+    return apiClient.get<DepartmentListResponse>(`/departments?${params.toString()}`);
+  },
+
+  getById: async (id: string) => {
+    return apiClient.get<{ department: Department }>(`/departments/${id}`);
+  },
+
+  getStats: async (id: string) => {
+    return apiClient.get<{ stats: DepartmentStats }>(`/departments/${id}/stats`);
+  },
+
+  create: async (data: {
+    name: string;
+    code?: string;
+    address?: string;
+    phone?: string;
+    email?: string;
+    managerName?: string;
+    managerPhone?: string;
+    description?: string;
+    isActive?: boolean;
+  }) => {
+    return apiClient.post<{ department: Department }>('/departments', data);
+  },
+
+  update: async (id: string, data: {
+    name?: string;
+    code?: string;
+    address?: string;
+    phone?: string;
+    email?: string;
+    managerName?: string;
+    managerPhone?: string;
+    description?: string;
+    isActive?: boolean;
+  }) => {
+    return apiClient.put<{ department: Department }>(`/departments/${id}`, data);
+  },
+
+  delete: async (id: string) => {
+    return apiClient.delete(`/departments/${id}`);
+  },
+};

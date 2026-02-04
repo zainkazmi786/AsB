@@ -36,6 +36,11 @@ const donationSchema = new mongoose.Schema({
     ref: 'Bank',
     default: null,
   },
+  departmentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Department',
+    default: null,
+  },
   remarks: {
     type: String,
     trim: true,
@@ -59,6 +64,7 @@ donationSchema.index({ date: -1 });
 donationSchema.index({ category: 1 });
 donationSchema.index({ isDeleted: 1 });
 donationSchema.index({ receiptNumber: 'text' });
+donationSchema.index({ departmentId: 1 });
 
 // Exclude deleted by default
 donationSchema.pre(/^find/, function() {

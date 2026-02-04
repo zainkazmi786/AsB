@@ -11,7 +11,8 @@ import {
   Receipt,
   BadgeDollarSign,
   PiggyBank,
-  ChevronDown
+  ChevronDown,
+  Network
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
@@ -33,6 +34,7 @@ const navItems: NavItem[] = [
   { label: 'ڈیش بورڈ', path: '/dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
   { label: 'عطیات', path: '/donations', icon: <HandHeart className="w-5 h-5" /> },
   { label: 'عطیہ دہندگان', path: '/donors', icon: <Users className="w-5 h-5" /> },
+  { label: 'ذیلی ادارے', path: '/departments', icon: <Network className="w-5 h-5" /> },
   { 
     label: 'مالیاتی انتظام', 
     path: '/finance',

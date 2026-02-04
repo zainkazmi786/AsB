@@ -37,6 +37,11 @@ const donorSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  departmentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Department',
+    default: null,
+  },
   totalDonations: {
     type: Number,
     default: 0,
@@ -62,6 +67,7 @@ const donorSchema = new mongoose.Schema({
 // Index for search optimization
 donorSchema.index({ name: 'text', phone: 'text' });
 donorSchema.index({ isDeleted: 1 });
+donorSchema.index({ departmentId: 1 });
 
 // Method to update donor stats (called when donation is created/updated/deleted)
 donorSchema.statics.updateDonorStats = async function(donorId) {

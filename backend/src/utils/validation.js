@@ -147,6 +147,90 @@ export const bankUpdateSchema = Joi.object({
   accountNumber: Joi.string().trim().optional(),
 }).min(1);
 
+// Department validation schema (create)
+export const departmentSchema = Joi.object({
+  name: Joi.string()
+    .min(2)
+    .required()
+    .trim()
+    .messages({
+      'string.empty': 'نام ضروری ہے',
+      'string.min': 'نام کم از کم 2 حروف کا ہونا چاہیے',
+      'any.required': 'نام ضروری ہے',
+    }),
+  code: Joi.string()
+    .pattern(/^[A-Z0-9\-]+$/)
+    .uppercase()
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.pattern.base': 'کوڈ صرف حروف، نمبر اور ڈیش پر مشتمل ہو سکتا ہے',
+    }),
+  address: Joi.string().allow('', null).optional(),
+  phone: Joi.string()
+    .pattern(/^[\d\s\-+()]+$/)
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.pattern.base': 'غلط فون نمبر کی شکل',
+    }),
+  email: Joi.string()
+    .email()
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.email': 'غلط ای میل کی شکل',
+    }),
+  managerName: Joi.string().allow('', null).optional(),
+  managerPhone: Joi.string()
+    .pattern(/^[\d\s\-+()]+$/)
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.pattern.base': 'غلط فون نمبر کی شکل',
+    }),
+  description: Joi.string().allow('', null).optional(),
+  isActive: Joi.boolean().optional(),
+});
+
+// Department update schema (all optional)
+export const departmentUpdateSchema = Joi.object({
+  name: Joi.string().min(2).trim().optional(),
+  code: Joi.string()
+    .pattern(/^[A-Z0-9\-]+$/)
+    .uppercase()
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.pattern.base': 'کوڈ صرف حروف، نمبر اور ڈیش پر مشتمل ہو سکتا ہے',
+    }),
+  address: Joi.string().allow('', null).optional(),
+  phone: Joi.string()
+    .pattern(/^[\d\s\-+()]+$/)
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.pattern.base': 'غلط فون نمبر کی شکل',
+    }),
+  email: Joi.string()
+    .email()
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.email': 'غلط ای میل کی شکل',
+    }),
+  managerName: Joi.string().allow('', null).optional(),
+  managerPhone: Joi.string()
+    .pattern(/^[\d\s\-+()]+$/)
+    .allow('', null)
+    .optional()
+    .messages({
+      'string.pattern.base': 'غلط فون نمبر کی شکل',
+    }),
+  description: Joi.string().allow('', null).optional(),
+  isActive: Joi.boolean().optional(),
+}).min(1);
+
 // Validate request data
 export const validate = (schema) => {
   return (req, res, next) => {

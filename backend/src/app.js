@@ -8,6 +8,7 @@ import donorRoutes from './routes/donorRoutes.js';
 import donationRoutes from './routes/donationRoutes.js';
 import bankRoutes from './routes/bankRoutes.js';
 import expenseRoutes from './routes/expenseRoutes.js';
+import departmentRoutes from './routes/departmentRoutes.js';
 
 const app = express();
 
@@ -73,6 +74,7 @@ app.use('/api/donors', donorRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/finance/banks', bankRoutes);
 app.use('/api/finance/expenses', expenseRoutes);
+app.use('/api/departments', departmentRoutes);
 
 // 404 handler
 app.use((req, res) => {

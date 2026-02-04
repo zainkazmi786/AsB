@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Donations from "./pages/Donations";
 import Donors from "./pages/Donors";
+import Departments from "./pages/Departments";
 import Banks from "./pages/finance/Banks";
 import Expenses from "./pages/finance/Expenses";
 import Reports from "./pages/Reports";
@@ -72,6 +73,7 @@ const AppRoutes = () => {
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/donations" element={<ProtectedRoute><Donations /></ProtectedRoute>} />
       <Route path="/donors" element={<ProtectedRoute><Donors /></ProtectedRoute>} />
+      <Route path="/departments" element={<ProtectedRoute><Departments /></ProtectedRoute>} />
       <Route path="/finance/banks" element={<ProtectedRoute><Banks /></ProtectedRoute>} />
       <Route path="/finance/expenses" element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
       <Route path="/finance/payroll" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
